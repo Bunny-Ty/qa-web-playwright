@@ -7,7 +7,7 @@
 | Severity | High (proposed) |
 | Priority | High (proposed) |
 | Environment | Sauce Demo (`https://www.saucedemo.com`); browser and OS details were not recorded |
-| Related test case | TC-CHK-014 (E-09) |
+| Related test case | TC-CHK-014 |
 | Status | Needs clarification |
 
 ## Preconditions
