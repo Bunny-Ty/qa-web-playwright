@@ -5,7 +5,8 @@
 | **Project** | qa-web-playwright |
 | **Application under test** | Sauce Demo (https://www.saucedemo.com) |
 | **Author** | Xuan Hoa |
-| **Version** | 1.0 |
+| **Version** | 1.1 |
+| **Last updated** | 2026-11-09 |
 | **Status** | Draft |
  
 ## 1. Introduction
@@ -130,7 +131,7 @@ Other data:
  
 - Checkout information: fake name and postal code only (for example, "Emily", "White", "12345"). No real personal data is used anywhere in the repository.
 - Products: the six items shown on the Products page, with prices from $7.99 to $49.99.
-- Tax is observed at 8% of the item total, rounded to two decimals.
+- Tax is 8% of the item total, rounded to two decimals. This rule was confirmed with five checkout data sets (P1 to P5) and is the expected result for price calculation tests.
 ## 8. Risks and Mitigation
  
 | Risk | Impact | Mitigation |
