@@ -5,3 +5,9 @@ test-results/
 .idea/
 .vscode/
 *.log
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
