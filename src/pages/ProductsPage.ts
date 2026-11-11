@@ -9,10 +9,14 @@ export class ProductsPage {
         this.items = page.getByTestId('inventory-item');
     }
 
-    async expectLoaded(): Promise<void> {
-         await expect(this.page).toHaveURL(/\/inventory\.html$/);
-        await expect(this.title).toHaveText('Products');
-        await expect(this.items).toHaveCount(6);
+    async goto(): Promise<void> {
+        await this.page.goto('/inventory.html');
+    }
+
+    async expectLoaded(timeout?: number): Promise<void> {
+        await expect(this.page).toHaveURL(/\/inventory\.html$/, { timeout });
+        await expect(this.title).toHaveText('Products', { timeout });
+        await expect(this.items).toHaveCount(6, { timeout });
     }
 
 
