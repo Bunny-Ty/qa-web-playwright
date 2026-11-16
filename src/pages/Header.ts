@@ -26,4 +26,8 @@ export class Header {
         await expect(this.cartBadge).toHaveText(String(count));
     }
 
+    async expectCartEmpty(): Promise<void> {
+        await expect(this.cartBadge).toHaveCount(0);
+    }
+
 }

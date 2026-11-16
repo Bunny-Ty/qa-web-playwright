@@ -48,6 +48,10 @@ export class CartPage {
     await expect(this.row(name)).toHaveCount(0);
   }
 
+  async expectEmpty(): Promise<void> {
+    await expect(this.items).toHaveCount(0);
+  }
+
   async removeItem(name: string): Promise<void> {
     await this.row(name).getByRole('button', { name: 'Remove' }).click();
   }
