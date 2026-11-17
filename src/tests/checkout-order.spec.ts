@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 import { checkoutInfo } from '../data/checkout';
 
@@ -19,6 +19,10 @@ import { Header } from '../pages/Header';
 import { LoginPage } from '../pages/LoginPage';
 
 import { ProductsPage } from '../pages/ProductsPage';
+
+import { calculateTotals } from '../utils/price';
+
+import { readPdfText } from '../utils/pdf';
 
 const { backpack, bikeLight} = PRODUCTS;
 
@@ -94,6 +98,30 @@ test.describe('Checkout - Overview and completion', () => {
 
         await productsPage.expectLoaded();
         await header.expectCartEmpty();
+    });
+
+        test('TC-CHK-018: PDF order receipt content @regression', async ({ page }, testInfo) => {
+        const overviewPage = new CheckoutOverviewPage(page);
+        const completePage = new CheckoutCompletePage(page);
+
+        await overviewPage.finish();
+        await completePage.expectLoaded();
+
+        const pdfPath = testInfo.outputPath('receipt.pdf');
+        const fileName = await completePage.generatePdfOrder(pdfPath);
+        const text = await readPdfText(pdfPath);
+        const expected = calculateTotals([backpack.price, bikeLight.price]);
+
+        expect(fileName).toMatch(/^swag-labs-order-.*\.pdf$/);
+        expect(text).toContain('Swag Labs Order Receipt');
+        expect(text).toMatch(/Order Date [A-Za-z]+ \d{1,2}, \d{4} at \d{1,2}:\d{2} [AP]M/);
+        expect(text).toContain(`${checkoutInfo.firstName} ${checkoutInfo.lastName} ${checkoutInfo.postalCode}`);
+        expect(text).toContain(`${backpack.name} ${backpack.price}`);
+        expect(text).toContain(`${bikeLight.name} ${bikeLight.price}`);
+        expect(text).toContain(`Item total ${expected.itemTotal}`);
+        expect(text).toContain(`Tax ${expected.tax}`);
+        expect(text).toContain(`Total ${expected.total}`);
+        expect(text).toContain('Thank you for your order!');
     });
 
 });

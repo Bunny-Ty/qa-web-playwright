@@ -26,6 +26,7 @@
   "homepage": "https://github.com/Bunny-Ty/qa-web-playwright#readme",
   "devDependencies": {
     "@playwright/test": "^1.65.0",
-    "@types/node": "^26.6.6"
+    "@types/node": "^26.6.6",
+    "pdf-parse": "^2.4.5"
   }
 }

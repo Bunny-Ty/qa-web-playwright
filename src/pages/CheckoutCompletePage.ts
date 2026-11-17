@@ -38,4 +38,12 @@ export class CheckoutCompletePage {
         await this.backHomeButton.click();
     }
 
+    async generatePdfOrder(savePath: string): Promise<string> {
+        const downloadPromise = this.page.waitForEvent('download');
+        await this.generatePdfButton.click();
+        const download = await downloadPromise;
+        await download.saveAs(savePath);
+        return download.suggestedFilename();
+    }
+
 }
