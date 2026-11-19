@@ -5,14 +5,14 @@
 | Application under test | Sauce Demo (https://www.saucedemo.com) |
 | Feature | F5 - Menu actions (menu items, Logout, Reset App State, About) |
 | Related work items | PORTFOLIO-16 (test plan and exploration), PORTFOLIO-17 (test cases) |
-| Last updated | 2026-11-07 |
+| Last updated | 2026-11-19 |
  
 ## Notes
  
 - No requirements document is available. Expected results come from direct observation (see PORTFOLIO-16).
 - Case types: **Positive** (expected flow), **Observation** (behavior observed but not confirmable as correct), **Defect candidate** (behavior that looks wrong by common e-commerce conventions; to be documented in `docs/bug-reports`). For a Defect candidate the expected result describes what was observed, not what should happen.
 - All cases in this file use `standard_user` and the password `secret_sauce`. Behavior of the other users is covered in `special-users.md`.
-- The pages under **Dynamic Catalog** (Lazy Load, Spinner, Slider) are out of scope for the first version (see the test plan, section 3.2). Only the presence of the menu item is checked here.
+- The pages under **Dynamic Catalog** (Lazy Load, Spinner, Slider) are covered in `dynamic-catalog.md` (FT-08). Only the presence of the menu item is checked here.
 - The page behind **About** (`saucelabs.com`) is a third-party site. Tests check only where the link leads, never the content of that site.
 - **Auto** shows whether the case is a candidate for Playwright automation.
 ## Test data
