@@ -90,15 +90,18 @@ npx playwright install
 
 ## CI
 
-The workflow `.github/workflows/playwright.yml` runs on every push and pull request to `main`, and can also be started by hand. It has two jobs that run in parallel:
+The workflow `.github/workflows/playwright.yml` runs on every push and pull request to `main`, and can also be started by hand. The two test jobs run in parallel:
 
 - **Smoke**: the `@smoke` tests on Chromium, Firefox, and WebKit (6 test runs).
 - **Regression**: the full suite on Chromium (57 test runs).
 
 Each job uploads the Playwright HTML report as an artifact, kept for 14 days, even when tests fail.
 
+After the Regression job, a third job publishes its HTML report to GitHub Pages. This happens only on pushes to `main`, not on pull requests. The page always shows the report of the latest push to `main`, so older runs are not kept there.
+
 ## Results
 
+- Live test report: [bunny-ty.github.io/qa-web-playwright](https://bunny-ty.github.io/qa-web-playwright/). It is rebuilt on every push to `main`, so it always shows the latest run.
 - CI status: see the badge at the top, or the [Actions tab](https://github.com/Bunny-Ty/qa-web-playwright/actions).
 - Test plan: [`docs/test-plan/test-plan.md`](docs/test-plan/test-plan.md)
 
